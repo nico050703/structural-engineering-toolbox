@@ -9,10 +9,11 @@ factored_load = 1.2 * dead_load + 1.6 * live_load
 design_type = input("Service or strength? ")
 if design_type == "service": load_psf = service_load
 elif design_type == "strength": load_psf = factored_load
+elif design_type == "strength": load_psf = factored_load
 else: print("invalid choice")
 # ask user tributary and dimensions, later we will use span for beam calculations.
 # I am thinking we will build databse with info on materials, support condition etc.
-span = float(input("enter span (ft): ")) # for now we will not use span
+span = float(input("enter span (ft): "))
 tributary_width = float(input("enter tributary width (ft): "))
 # calculate line load
 line_load = tributary_width * load_psf
