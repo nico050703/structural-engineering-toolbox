@@ -20,7 +20,8 @@ moment = (line_load * span**2)/8
 # add deflection here, EI will be added when i upddate to add section and material properties
 standard_deflection = 5* line_load * span_in**4/384
 LL_deflection = (live_load * span_in**4)/384
-#deflection limits
+#deflection limits, later user will input beam type and more deflection options will be availabke
+#for now assuming floor beam
 live_load_limit = span_in/240
 standard_deflection_limit = span_in/360
 #check deflection, currently this isnt accurate. Will be when section properties added
