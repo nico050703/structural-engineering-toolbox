@@ -1,2 +1,2 @@
-use trib calculator rev 1 for line load calculation and max shear and moment of a simply supported beam. 
-Trib calculator rev 2 adds a deflection checker, but it cannot be used in that version
+use trib calculator final for line load, max shear, and max moment for simply supported beams that follow a 1.2 D + 1.6L load factoring
+beam calculator simple adds in deflection, material and section properties
