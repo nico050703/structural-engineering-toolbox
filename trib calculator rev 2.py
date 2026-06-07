@@ -23,7 +23,7 @@ LL_deflection = (live_load * span_in**4)/384
 #deflection limits
 live_load_limit = span_in/240
 standard_deflection_limit = span_in/360
-#check deflection
+#check deflection, currently this isnt accurate. Will be when section properties added
 if LL_deflection < live_load_limit:
     LL_deflectiion_status = "PASS"
 else: LL_deflectiion_status = "FAIL"
