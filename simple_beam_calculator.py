@@ -102,6 +102,10 @@ materials = { # check all these values later
     }
 }
 
+# -----------------------------
+# Deflection (service load only)
+# EI will be added later
+# -----------------------------
 
 # -----------------------------
 # Deflection (service load only)
