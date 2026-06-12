@@ -103,16 +103,83 @@ materials = { # check all these values later
 }
 
 # -----------------------------
-# Deflection (service load only)
-# EI will be added later
+# Selection helper function
 # -----------------------------
+def select_from_list(options, prompt):
+    """
+    Prints a numbered list of options and returns the selected option.
+    """
+
+    options = list(options)
+
+    print()
+    print(prompt)
+
+    for i, option in enumerate(options, start=1):
+        print(f"{i}. {option}")
+
+    while True:
+        try:
+            choice = int(input("Enter selection number: "))
+
+            if 1 <= choice <= len(options):
+                return options[choice - 1]
+            else:
+                print("Invalid selection. Try again.")
+
+        except ValueError:
+            print("Please enter a number.")
+
+
+# -----------------------------
+# Material / shape selection
+# -----------------------------
+selected_material = select_from_list(
+    materials.keys(),
+    "Select material:"
+)
+
+material_data = materials[selected_material]
+
+
+selected_category = select_from_list(
+    material_data["categories"].keys(),
+    "Select shape category:"
+)
+
+category_data = material_data["categories"][selected_category]
+
+
+selected_shape = select_from_list(
+    category_data["shapes"].keys(),
+    "Select shape size:"
+)
+
+shape_data = category_data["shapes"][selected_shape]
+
+
+# -----------------------------
+# Retrieve E, Ix, Sx, EI
+# -----------------------------
+
+# Steel has E at the material level.
+# Wood has E at the category level.
+if "E" in material_data:
+    E = material_data["E"]
+else:
+    E = category_data["E"]
+
+Ix = shape_data["Ix"]
+Sx = shape_data["Sx"]
+
+EI = E * Ix
 
 # -----------------------------
 # Deflection (service load only)
 # EI will be added later
 # -----------------------------
-standard_deflection_in = (5 * line_load_service_pli * span_in**4) / 384
-LL_deflection_in = (5 * line_load_LL_only_pli * span_in**4) / 384
+standard_deflection_in = (5 * line_load_service_pli * span_in**4) / (384*EI)
+LL_deflection_in = (5 * line_load_LL_only_pli * span_in**4) / (384*EI)
 
 # Deflection limits (floor beam assumptions)
 live_load_limit_in = span_in / 240
